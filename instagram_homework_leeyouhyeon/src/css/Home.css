@@ -1,0 +1,255 @@
+.Home{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    background:  #FAFAFA;
+}
+
+.Home-search{
+    display: flex;
+    width: 215px;
+    padding: 4px 72px 4px 71px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 3px;
+    border: 1px solid var(--Border-Color, #DBDBDB);
+    background: #EFEFEF;
+    margin-left: 257px;
+}
+
+.Home-main{
+    display: flex;
+    width: 935px;
+    height: 1080px;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    margin: 0 auto;
+}
+
+.Home-story{
+    display: flex;
+    width: 612px;
+    flex-shrink: 0;
+    background:white;
+    margin-top: 140px;
+    margin-right: 28px;
+    border: 1px solid #EFEFEF;
+}
+
+
+.Home-story-header{
+    display: flex;
+    padding: 9px 0px 9px 16px;
+    align-items: flex-start;
+    justify-items: center;
+    gap: 10px;
+    height: 40px;
+}
+
+.Home-header-other2{
+    position: absolute;
+    border-radius: 22px; 
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.Home-header-other2 img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Home-header-other3{
+    position: relative;
+    border-radius: 22px; 
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+
+.Home-header-more{
+    padding-left: 403px;
+    padding-top: 5px;
+}
+
+.Home-story-post{
+    display: flex;
+    height: 612px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.Home-story-icons{
+    padding: 6px 16px 8px 16px;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 580px;
+}
+
+.Home-story-icons span{
+    display: flex;
+    gap: 16px;
+}
+
+.Home-story-icons span button{
+    display: flex;
+    gap: 16px;
+    padding: 0;
+    width: 24px;
+    height: 26px;
+    border: none;
+    background: white;
+}
+
+.Home-story-icons-like{
+    width: 24px;
+    height: 26px;
+}
+
+.Home-story-icons-likeOn{
+    width: 25px;
+    height: 25px;
+}
+
+.Home-story-like{
+    display: flex;
+    flex-direction: row;
+    width: 580px;
+    height: 18px;
+    padding: 0px 16px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    gap: 5px;
+}
+
+.Home-story-commentList{
+    display: flex;
+    width: 580px;
+    padding: 0px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 88px;
+    margin: 0;
+}
+
+.Home-story-commentList div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 44px;
+}
+
+.Home-story-commentList div div{
+    display: flex;
+    gap: 26px
+}
+
+.Home-story-comment-like{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Home-story-comment-like button{
+    flex-shrink: 0;
+    border: none;
+    background: white;
+}
+
+.Home-story-comment-like button img {
+    width: 14px;
+    height: 14px;
+}
+
+.Home-story-comment{
+    display: flex;
+    width: 580px;
+    padding: 6px 16px;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    border-top: 1px solid #EFEFEF;
+}
+
+.Home-story-comment-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.Home-story-comment-details div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.Home-comment-writing{
+    width: 480px;
+    height: 40px;
+    border: none;
+}
+
+.Home-story-comment-details button{
+    border: none;
+    background: white;
+    color: #0095F6;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.Home-secondary{
+    display: flex;
+    width: 293px;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    gap: 24px;
+    padding-top: 45px;
+}
+
+.Home-secondary div {
+    height: 56px;
+    align-items: flex-start;
+    gap:24px;
+}
+
+.Home-secondary-myImage{
+    position: relative;
+    border-radius: 56px; 
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+}
+
+.Home-secondary-myImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Home-secondary div span{
+    color: #000;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 138.462% */
+    text-transform: lowercase;
+}

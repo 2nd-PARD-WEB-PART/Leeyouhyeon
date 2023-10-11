@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import "./Posts.css"
+import "./css/Posts.css"
 
 const PostImage =styled.img`
     width: 300px;

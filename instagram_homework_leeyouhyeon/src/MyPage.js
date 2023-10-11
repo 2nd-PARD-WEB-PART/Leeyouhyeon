@@ -2,7 +2,9 @@ import React from "react";
 import Profile from "./Profile";
 import Posts from "./Posts";
 
-import "./Mypage.css"
+import {Link} from 'react-router-dom';
+
+import "./css/Mypage.css"
 import styled from "styled-components";
 
 const Row =styled.div`
@@ -42,18 +44,21 @@ function MyPage(props) {
     return (
       <div className="mypage">
         <header className="mypage-Nav">
-            <div className="mypage-Nav-position">
-              <img src="/images/Logo.png" alt="인스타로고"></img>
-              <Row className="mypage-Nav-buttonPos" >
-                <BtnImg src="/images/Home.png" alt="홈버튼"></BtnImg>
-                <BtnImg src="/images/NewPosts.png" alt="포스팅버튼"></BtnImg>
-                <BtnImg src="/images/Like.png" alt="하트버튼"></BtnImg>
-                <div className="mypage-nav-myImage">
-                  <BtnImg style={{ marginRight: '0px' }} src={props.info.profileImage} alt="프로필이미지"></BtnImg>
-                </div>
-              </Row>
-            </div>
+          <div className="mypage-Nav-position">
+            <img src="/images/Logo.png" alt="인스타로고"></img>
+            <Row className="mypage-Nav-buttonPos" >
+              <BtnImg src="/images/Home.png" alt="홈버튼"></BtnImg>
+              <BtnImg src="/images/NewPosts.png" alt="포스팅버튼"></BtnImg>
+              <BtnImg src="/images/Like.png" alt="하트버튼"></BtnImg>
+              <div className="mypage-nav-myImage">
+                <Link to={"/EditProfile"}>
+                <BtnImg style={{ marginRight: '0px' }} src={props.info.profileImage} alt="프로필이미지"></BtnImg>
+                </Link>
+              </div>
+            </Row>
+          </div>
         </header>
+
         <main className="mypage-main">
           <Profile className="mypage-profile" info={props.info}/>
           <div className="mypage-toggle">

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import "./Profile.css"
+import "./css/Profile.css"
 
 const Row =styled.div`
     display: flex;

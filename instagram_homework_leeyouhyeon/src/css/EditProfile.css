@@ -1,0 +1,102 @@
+.EditProfile{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    background: #F9F9F9;
+}
+
+.EditProfile-main{
+    display: flex;
+    width: 919px;
+    height: 647px;
+    margin-top: 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    margin: 0 auto;
+    margin-top: 32px;
+
+    background: white;
+}
+
+.EditProfile-leftSide{
+    width: 220px;
+    height: 647px;
+    flex-shrink: 0;
+    border: 1px solid #EFEFEF;
+}
+.EditProfile-index{
+    display: flex;
+    height: 53px;
+    align-items: center;
+}
+
+.EditProfile-meta{
+    margin-top: 301px;
+    height: 240px;
+    border: 1px solid #EFEFEF;
+}
+
+.EditProfile-rightSide{
+    width: 700px;
+    height: 647px;
+    flex-shrink: 0;
+}
+
+.EditProfile-imageChange{
+    margin-top: 32px;
+    margin-left: 125px;
+    margin-bottom: 55px;
+}
+
+.EditProfile-myImage{
+    position: relative;
+    border-radius: 22px; 
+    width: 38px;
+    height: 38px;
+    overflow: hidden;
+}
+
+.EditProfile-myImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.EditProfile-fileupload{
+    color: #0095F6;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding-left: 28px;
+    background: white;
+    padding: 0px;
+    font-size:14px;
+    border: none;
+}
+
+.EditBtn{
+    width: 60px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: rgba(0, 149, 246, 0.25);
+    color: white;
+    border: none;
+    margin-left: 203px;
+}
+
+.EditBtn-modified{
+    width: 60px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    margin-left: 203px;
+    background: #0095F6;
+}
