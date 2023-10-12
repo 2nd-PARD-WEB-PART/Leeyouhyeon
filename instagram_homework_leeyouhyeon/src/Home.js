@@ -51,30 +51,26 @@ function Home(props) {
       likeCount: 0
     };
 
-    setCommentArray(commentValueList => [newComment, ...commentValueList]);
+    setCommentArray(commentValueList => [...commentValueList, newComment]);
     setComment('');
   };
 
-  const handleCommentLikeChange = (id) => {
+  const handleCommentLikeChange = (index) => {
     // 댓글 배열의 복사본을 만듭니다.
     const updatedCommentArray = [...commentArray];
   
-    // 해당 ID와 일치하는 댓글을 찾습니다.
-    const commentIndex = updatedCommentArray.findIndex(comment => comment.id === id);
+    // 지정된 댓글의 'like' 속성을 토글합니다.
+    updatedCommentArray[index].like = !updatedCommentArray[index].like;
   
-    if (commentIndex !== -1) {
-      // 지정된 댓글의 'like' 속성을 토글합니다.
-      updatedCommentArray[commentIndex].like = !updatedCommentArray[commentIndex].like;
+    // 해당 댓글의 'like' 상태를 기반으로 'likeCount'를 업데이트합니다.
+    updatedCommentArray[index].likeCount = updatedCommentArray[index].like
+      ? updatedCommentArray[index].likeCount + 1
+      : updatedCommentArray[index].likeCount - 1;
   
-      // 해당 댓글의 'like' 상태를 기반으로 'likeCount'를 업데이트합니다.
-      updatedCommentArray[commentIndex].likeCount = updatedCommentArray[commentIndex].like
-        ? updatedCommentArray[commentIndex].likeCount + 1
-        : updatedCommentArray[commentIndex].likeCount - 1;
+    // 수정된 댓글 배열을 상태로 설정합니다.
+    setCommentArray(updatedCommentArray);
+  }
   
-      // 수정된 댓글 배열을 상태로 설정합니다.
-      setCommentArray(updatedCommentArray);
-    }
-  };
   
   // 버튼 클릭 시 postLike 값을 업데이트하는 함수
   const handlePostlikeChange = (event) => {
@@ -160,14 +156,14 @@ function Home(props) {
                 </div>
 
                 <div className="Home-story-commentList">
-                  {commentArray.slice().reverse().map((comment, index) => (
+                  {commentArray.map((comment, index) => (
                     <Row key={index}>
                       <div>
                         <span>{comment.username}</span>
                         <span>{comment.commentText}</span>
                       </div>
                       <span className="Home-story-comment-like">
-                        <button type="submit" onClick={() => handleCommentLikeChange(comment.id)}>
+                        <button type="submit" onClick={() => handleCommentLikeChange(index)}>
                           <img src={comment.like ? "/images/LikeRed.png" : "/images/Like.png"} alt="댓글 좋아요버튼" />
                         </button>
                         <span>{comment.likeCount}</span>
