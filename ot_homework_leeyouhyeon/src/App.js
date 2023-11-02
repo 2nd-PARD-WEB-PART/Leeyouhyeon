@@ -1,28 +1,53 @@
 import './App.css';
+import { useState, createContext, useContext, useMemo } from 'react';
+
+const CounterContext =createContext();
+
+function CounterProvider({children}){
+  const [counter, setCounter] =useState(1);
+  const actions = useMemo(
+    ()=> ({
+      increase() {
+        setCounter((prev)=>prev+1);
+      },
+      decrease(){
+        setCounter((prev)=>prev-1);
+      },
+    }),
+    []
+  );
+  
+  const value =useMemo(() => [counter, actions], [counter, actions]);
+
+  return (
+    <CounterContext.Provider value={value}>
+      {children}
+    </CounterContext.Provider>
+  );
+}
 
 function App() {
   return (
-    <div className="intro">
-      <header className="intro-header">
-        <h3>
-          나를 소개합니다
-        </h3>
-        <h4>
-          안녕하세요, 저는 21학번 이유현입니다.
-        </h4>
-        <img src="myimage.jpg" className="intro-image" alt="myimage" />
-        <h5>
-          이번 학기 나의 목표: 과제 미루지 않고 미리미리 끝내기!
-        </h5> 
-        <h5>   
-          좋아하는 것 3가지  
-        </h5>
-        <p className= "intro-like"> 
-          책 읽기 <br />
-          게임 하기 <br />      
-          강아지     
-        </p>
-      </header>
+    <CounterProvider>
+      <div>
+        <Value/>
+        <Buttons/>
+      </div>
+    </CounterProvider>
+  );
+}
+
+function Value(){
+  const [counter] =useContext[CounterContext];
+  return <h1>{counter}</h1>
+}
+function Buttons(){
+  const [,actions] =useContext[CounterContext];
+
+  return(
+    <div>
+      <button onClick={actions.increase}>+</button>
+      <button onClick={actions.decrease}>-</button>
     </div>
   );
 }

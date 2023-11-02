@@ -7,6 +7,9 @@ import {Link} from 'react-router-dom';
 import "./css/Mypage.css"
 import styled from "styled-components";
 
+import { useContext  } from "react";
+import { ProfileContext } from './ProfileContext';
+
 const Row =styled.div`
     display: flex;
     flex-direction: row;
@@ -40,19 +43,27 @@ const ToggleImg =styled.img`
     padding-right: 6px;
 `;
 
-function MyPage(props) {
+function MyPage() {
+
+    // 프로필 컨텍스트에 액세스
+    const { profileInfo } = useContext(ProfileContext);
+    // profileInfo에서 필요한 값들을 추출
+    const { profileImage } = profileInfo;
+
     return (
       <div className="mypage">
         <header className="mypage-Nav">
           <div className="mypage-Nav-position">
-            <img src="/images/Logo.png" alt="인스타로고"></img>
+            <Link to={"/home"}>
+              <img src="/images/Logo.png" alt="인스타로고"></img>
+            </Link>
             <Row className="mypage-Nav-buttonPos" >
               <BtnImg src="/images/Home.png" alt="홈버튼"></BtnImg>
               <BtnImg src="/images/NewPosts.png" alt="포스팅버튼"></BtnImg>
               <BtnImg src="/images/Like.png" alt="하트버튼"></BtnImg>
               <div className="mypage-nav-myImage">
                 <Link to={"/EditProfile"}>
-                <BtnImg style={{ marginRight: '0px' }} src={props.info.profileImage} alt="프로필이미지"></BtnImg>
+                <BtnImg style={{ marginRight: '0px' }} src={profileImage} alt="프로필이미지"></BtnImg>
                 </Link>
               </div>
             </Row>
@@ -60,7 +71,7 @@ function MyPage(props) {
         </header>
 
         <main className="mypage-main">
-          <Profile className="mypage-profile" info={props.info}/>
+          <Profile className="mypage-profile"/>
           <div className="mypage-toggle">
             <ToggleBtn style={{ borderTop: '1px solid black' }}>
               <ToggleImg src="/images/Posts.png" alt="게시물"></ToggleImg> 게시물
@@ -72,7 +83,7 @@ function MyPage(props) {
               <ToggleImg src="/images/Tagged.png" alt="태그"></ToggleImg> 태그됨
             </ToggleBtn>
           </div>
-          <Posts info={props.info}/>
+          <Posts/>
         </main>
       </div>
     );

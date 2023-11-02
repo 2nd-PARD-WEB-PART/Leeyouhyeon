@@ -5,6 +5,18 @@
     align-items: center;
     background:  #FAFAFA;
 }
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home{
+        height: 100%;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home{
+        height: 100%;
+    }
+}
 
 .Home-search{
     display: flex;
@@ -18,6 +30,14 @@
     background: #EFEFEF;
     margin-left: 257px;
 }
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-search{
+        margin-left: 0;
+        padding: 0;
+        width: 100px;
+    }
+}
 
 .Home-main{
     display: flex;
@@ -30,6 +50,82 @@
     margin: 0 auto;
 }
 
+/* width가 450px 이상 750px 미만일 때 Home-main 위치 변경 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-main{
+        width: 450px;
+        align-items: center;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-main{
+        width: 250px;
+        height: 600px;
+        align-items: center;
+    }
+}
+
+.Home-Nav{
+    display: flex;
+    width: 100%;
+    height: 53px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid #DBDBDB;
+    background: white;
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-Nav{
+        border-top: 1px solid #DBDBDB;
+        height:30px;
+    }
+}
+
+
+.Home-Nav-position{
+    display: flex;
+    width: 935px;
+    flex-direction: row;
+}
+/* width가 450px 이상 750px 미만일 때 변경 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-Nav-position{
+        width: 450px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-Nav-position{
+        width: 250px;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.Home-Nav-buttonPos{
+    justify-content:flex-end;
+}
+
+.Home-nav-myImage{
+    position: relative;
+    border-radius: 22px; 
+    width: 22px;
+    height: 22px;
+    overflow: hidden;
+}
+
+.Home-nav-myImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .Home-story{
     display: flex;
     width: 612px;
@@ -38,6 +134,21 @@
     margin-top: 140px;
     margin-right: 28px;
     border: 1px solid #EFEFEF;
+}
+/* width가 450px 이상 750px 미만일 때 Home-story의  margin 변경 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story{
+        width: 450px;
+        margin-right: 0px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story{
+        width: 250px;
+        margin-right: 0px;
+        margin-top: 20px;
+    }
 }
 
 
@@ -49,6 +160,20 @@
     gap: 10px;
     height: 40px;
 }
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-header{
+        height:30px;
+    }
+}
+
+/* width가 450px 미만일 때 헤더 서클 크기 변경*/
+@media (max-width: 449px){
+    .Home-story-header div img{
+        width: 32px;
+        height: 32px
+    }
+}
 
 .Home-header-other2{
     position: absolute;
@@ -57,6 +182,14 @@
     height: 32px;
     overflow: hidden;
     padding: 5px;
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-header-other2{
+        border-radius: 12px; 
+        width: 22px;
+        height: 22px;
+    }
 }
 
 .Home-header-other2 img{
@@ -75,10 +208,31 @@
     height: 32px;
     overflow: hidden;
 }
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-header-other3{
+        border-radius: 12px; 
+        width: 22px;
+        height: 22px;
+    }
+}
 
 .Home-header-more{
     padding-left: 403px;
     padding-top: 5px;
+}
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-header-more{
+        padding-left: 250px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-header-more{
+        padding-left: 50px;
+        padding-top: 0px;
+    }
 }
 
 .Home-story-post{
@@ -88,13 +242,42 @@
     align-items: center;
     flex-shrink: 0;
 }
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story-post{
+        width: 450px;
+        height: 450px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-post{
+        width: 250px;
+        height: 250px;
+    }
+}
 
 .Home-story-icons{
+    display: flex;
+    flex-direction: row;
     padding: 6px 16px 8px 16px;
     justify-content: space-between;
     align-items: center;
     height: 40px;
     width: 580px;
+}
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story-icons{
+        width: 418px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-icons{
+        width: 218px;
+        padding-bottom: 0;
+    }
 }
 
 .Home-story-icons span{
@@ -110,6 +293,14 @@
     height: 26px;
     border: none;
     background: white;
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-icons span button{
+        gap: 0;
+        width: 12px;
+        height: 14px;
+    }
 }
 
 .Home-story-icons-like{
@@ -132,6 +323,26 @@
     flex-shrink: 0;
     gap: 5px;
 }
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story-like{
+        width: 418px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-like{
+        width: 218px;
+        height: 10px;
+    }
+}
+
+/* width가 450px 미만일 때 포스트의 좋아요 개수 표시의 글자 크기 변경 */
+@media (max-width: 449px){
+    .Home-story-like span{
+        font-size: 10px;
+    }
+}
 
 .Home-story-commentList{
     display: flex;
@@ -141,6 +352,19 @@
     align-items: flex-start;
     min-height: 88px;
     margin: 0;
+}
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story-commentList{
+        width: 418px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-commentList{
+        width: 224px;
+        padding-right: 0;
+    }
 }
 
 .Home-story-commentList div{
@@ -153,6 +377,19 @@
 .Home-story-commentList div div{
     display: flex;
     gap: 26px
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-commentList div div{
+        gap: 10px
+    }
+}
+
+/* width가 450px 미만일 때 댓글의 아이디와 댓글 내용 크기 변경*/
+@media (max-width: 449px){
+    .Home-story-commentList div div span{
+        font-size: 10px;
+    }
 }
 
 .Home-story-comment-like{
@@ -171,6 +408,20 @@
     width: 14px;
     height: 14px;
 }
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-comment-like button img{
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* width가 450px 미만일 때 각 댓글마다의 좋아요 갯수 크기 변경 */
+@media (max-width: 449px){
+    .Home-story-comment-like span{
+        font-size: 10px;
+    }
+}
 
 .Home-story-comment{
     display: flex;
@@ -181,6 +432,20 @@
     min-height: 52px;
     border-top: 1px solid #EFEFEF;
 }
+/* width가 450px 이상 750px 미만일 때 */
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story-comment{
+        width: 420px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-comment{
+        width: 220px;
+        min-height: 40px;
+    }
+}
+
 
 .Home-story-comment-details {
     display: flex;
@@ -194,10 +459,31 @@
     align-items: center;
 }
 
+/* width가 450px 미만일 때 이모티콘 버튼의 크기 변경 */
+@media (max-width: 449px){
+    .Home-story-comment-details div img{
+        width: 12px;
+        height: 14px;
+    }
+}
+
 .Home-comment-writing{
     width: 480px;
     height: 40px;
     border: none;
+}
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-comment-writing{
+        width: 340px;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-comment-writing{
+        width: 160px;
+        height: 30px;
+        font-size: 10px;
+    }
 }
 
 .Home-story-comment-details button{
@@ -209,6 +495,26 @@
     line-height: 18px;
     padding-left: 15px;
     padding-right: 10px;
+}
+@media (min-width: 450px) and (max-width: 750px){
+    .Home-story-comment-details button{
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        width: 30px;
+        align-items: center;
+    }
+}
+/* width가 450px 미만일 때 */
+@media (max-width: 449px){
+    .Home-story-comment-details button{
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        width: 30px;
+        align-items: center;
+        font-size: 10px;
+    }
 }
 
 .Home-secondary{

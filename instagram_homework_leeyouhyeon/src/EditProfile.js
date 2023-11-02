@@ -1,82 +1,19 @@
-import React , { useState,useRef  } from "react";
+import React , { useState, useRef, useContext  } from "react";
 import styled from "styled-components";
 import './css/EditProfile.css';
 import './css/Mypage.css';
 import { Link} from 'react-router-dom';
 
-const Row =styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-`;
-
-const BtnImg =styled.img`
-    display: flex;
-    width: 22px;
-    height: 22px;
-    padding-right: 22px;
-`;
-
-const MetaImg =styled.img`
-    display: flex;
-    width: 60px;
-    height: 12px;
-    padding-left: 28px;
-    padding-top:57px;
-`;
-
-const BlueP =styled.p`
-    color: #0095F6;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px;
-    padding-left: 28px;
-`;
-
-const GrayP =styled.p`
-    color: #8E8E8E;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
-    width: 165px;
-    padding-left: 28px;
-    
-`;
-
-const InfoP =styled.p`
-    text-align: right;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-right: 33px;
-    margin-top: 5px;
-`;
-
-const InputBox =styled.input`
-    width: 355px;
-    height: 32px;
-    flex-shrink: 0;
-
-    border-radius: 2px;
-    border: 1px solid #EFEFEF;
-    background: #FFF;
-
-    margin-bottom: 43px;
-    
-`;
+import { ProfileContext } from './ProfileContext';
 
 
-function EditProfile(props) {
+function EditProfile() {
 
-    const [username, setUsername] = useState(props.info.id);
-    const [greeting, setGreeting] = useState(props.info.greeting);
-    const [website, setWebsite] = useState('');
-    const [email, setEmail] = useState(props.info.email);
-    const [gender, setGender] = useState(props.info.gender);
-    const [profileImage, setProfileImage] = useState(props.info.profileImage); // 이미지 상태 추가
+    // 프로필 컨텍스트에 액세스
+    const { profileInfo, setProfileInfo } = useContext(ProfileContext);
+
+    // profileInfo에서 필요한 값들을 추출
+    const { id, greeting, website, email, gender, profileImage } = profileInfo;
 
     //사용자가 내용을 수정했을때 버튼 활성화 
     const [isModified, setIsModified] = useState(false);
@@ -89,44 +26,71 @@ function EditProfile(props) {
         imageInput.current.click();
     };
 
+    // 파일 업로드 시 이미지 URL을 저장하는 상태 변수
+    const [imageURL, setImageURL] = useState(profileImage);
+
+    // 각 입력 필드의 값 저장 상태 변수
+    const [newUsername, setNewUsername] = useState(id);
+    const [newGreeting, setNewGreeting] = useState(greeting);
+    const [newWebsite, setNewWebsite] = useState(website);
+    const [newEmail, setNewEmail] = useState(email);
+    const [newGender, setNewGender] = useState(gender);
+
     // 파일 업로드 이벤트 핸들러
     const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-        // 파일을 어딘가에 저장하거나 서버로 업로드
-        // 여기에서는 이미지 URL을 설정합니다.
-        const imageURL = URL.createObjectURL(file);
-        setProfileImage(imageURL);
-        setIsModified(true);
-        }
+      const file = event.target.files[0];
+      if (file) {
+          const imageURL = URL.createObjectURL(file);
+          setImageURL(imageURL);
+          setIsModified(true);
+      }
     };
 
+    // 각 입력 필드의 변경 이벤트 핸들러
     const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-        setIsModified(true);
+      const newUsername = event.target.value;
+      setNewUsername(newUsername);
+      setIsModified(true);
     };
+
     const handleGreetingChange = (event) => {
-        setGreeting(event.target.value);
-        setIsModified(true);
+      const newGreeting = event.target.value;
+      setNewGreeting(newGreeting);
+      setIsModified(true);
     };
+
     const handleWebsiteChange = (event) => {
-        setWebsite(event.target.value);
-        setIsModified(true);
+      const newWebsite = event.target.value;
+      setNewWebsite(newWebsite);
+      setIsModified(true);
     };
+
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-        setIsModified(true);
+      const newEmail = event.target.value;
+      setNewEmail(newEmail);
+      setIsModified(true);
     };
+
     const handleGenderChange = (event) => {
-        setGender(event.target.value);
-        setIsModified(true);
+      const newGender = event.target.value;
+      setNewGender(newGender);
+      setIsModified(true);
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        // 상위 컴포넌트로 변경된 정보를 전달하는 업데이트 함수를 호출
-        props.updateProfileInfo({ id: username, greeting,website,email,gender, profileImage  });
-        setIsModified(false); // 제출 후 수정되지 않은 상태로 설정
+      event.preventDefault();
+      if (isModified) {
+          setProfileInfo((prevProfileInfo) => ({
+              ...prevProfileInfo,
+              profileImage: imageURL,
+              id: newUsername,
+              greeting: newGreeting,
+              website: newWebsite,
+              email: newEmail,
+              gender: newGender
+          }));
+          setIsModified(false);
+      }
     };
 
     // 버튼의 CSS 클래스를 동적으로 변경
@@ -137,14 +101,16 @@ function EditProfile(props) {
       <div className="EditProfile">
         <header className="mypage-Nav">
           <div className="mypage-Nav-position">
-            <img src="/images/Logo.png" alt="인스타로고"></img>
+            <Link to={"/home"}>
+              <img src="/images/Logo.png" alt="인스타로고"></img>
+            </Link>
             <Row className="mypage-Nav-buttonPos" >
               <BtnImg src="/images/Homeoff.png" alt="홈버튼"></BtnImg>
               <BtnImg src="/images/NewPosts.png" alt="포스팅버튼"></BtnImg>
               <BtnImg src="/images/Like.png" alt="하트버튼"></BtnImg>
               <div className="mypage-nav-myImage">
                 <Link to={"/EditProfile"}>
-                <BtnImg style={{ marginRight: '0px' }} src={props.info.profileImage} alt="프로필이미지"></BtnImg>
+                <BtnImg style={{ marginRight: '0px' }} src={profileImage} alt="프로필이미지"></BtnImg>
                 </Link>
               </div>
             </Row>
@@ -171,10 +137,10 @@ function EditProfile(props) {
                     <form className="EditProfile-edit" onSubmit={handleSubmit}>
                         <Row className="EditProfile-imageChange">
                             <div className="EditProfile-myImage">
-                                <BtnImg style={{ marginRight: '0px' }} src={props.info.profileImage} alt="프로필이미지"></BtnImg>
+                                <BtnImg style={{ marginRight: '0px' }} src={profileImage} alt="프로필이미지"></BtnImg>
                             </div>
                             <div style={{ marginLeft: '32px'}}>
-                                <p style={{ margin: '0px', fontWeight:"500", fontSize:"20px"}}>{props.info.id}</p>
+                                <p style={{ margin: '0px', fontWeight:"500", fontSize:"20px"}}>{id}</p>
                                 
                                 <input type="file" style={{ display: "none" }} ref={imageInput} onChange={handleImageChange} />
 
@@ -184,11 +150,11 @@ function EditProfile(props) {
 
                         <Row>
                             <InfoP style={{ marginLeft: '89px'}}>사용자 이름</InfoP>
-                            <InputBox className="EditProfile-id" type="text" value={username} onChange={handleUsernameChange}></InputBox>
+                            <InputBox className="EditProfile-id" type="text"  onChange={handleUsernameChange}></InputBox>
                         </Row>
                         <Row>
                             <InfoP style={{ marginLeft: '137px'}}>소개</InfoP>
-                            <InputBox className="EditProfile-greeting" type="text" value={greeting}  onChange={handleGreetingChange}
+                            <InputBox className="EditProfile-greeting" type="text"  onChange={handleGreetingChange}
                             style={{ height: '64px'}}></InputBox>
                         </Row>
                         <Row>
@@ -197,11 +163,11 @@ function EditProfile(props) {
                         </Row>
                         <Row>
                             <InfoP style={{ marginLeft: '125px'}}>이메일</InfoP>
-                            <InputBox className="EditProfile-email" type="email" value={email} onChange={handleEmailChange}></InputBox>
+                            <InputBox className="EditProfile-email" type="email" onChange={handleEmailChange}></InputBox>
                         </Row>
                         <Row>
                             <InfoP style={{ marginLeft: '142px'}}>성별</InfoP>
-                            <InputBox className="EditProfile-sex" type="text" value={gender} onChange={handleGenderChange}></InputBox>
+                            <InputBox className="EditProfile-sex" type="text"  onChange={handleGenderChange}></InputBox>
                         </Row>
                         <button type="submit" className={submitButtonClass}>제출</button>
                     </form>
@@ -212,5 +178,70 @@ function EditProfile(props) {
       </div>
     );
   }
+
+
+const Row =styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+
+const BtnImg =styled.img`
+  display: flex;
+  width: 22px;
+  height: 22px;
+  padding-right: 22px;
+`;
+
+const MetaImg =styled.img`
+  display: flex;
+  width: 60px;
+  height: 12px;
+  padding-left: 28px;
+  padding-top:57px;
+`;
+
+const BlueP =styled.p`
+  color: #0095F6;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  padding-left: 28px;
+`;
+
+const GrayP =styled.p`
+  color: #8E8E8E;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  width: 165px;
+  padding-left: 28px;
+  
+`;
+
+const InfoP =styled.p`
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-right: 33px;
+  margin-top: 5px;
+`;
+
+const InputBox =styled.input`
+  width: 355px;
+  height: 32px;
+  flex-shrink: 0;
+
+  border-radius: 2px;
+  border: 1px solid #EFEFEF;
+  background: #FFF;
+
+  margin-bottom: 43px;
+  
+`;
   
   export default EditProfile;

@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import "./css/Profile.css"
 
+import { useContext  } from "react";
+import { ProfileContext } from './ProfileContext';
+
 const Row =styled.div`
     display: flex;
     flex-direction: row;
@@ -35,35 +38,42 @@ const EidtImg =styled.img`
     padding: 8px;
 ` 
 
-function Profile(props) {
+function Profile() {
+
+    // 프로필 컨텍스트에 액세스
+    const { profileInfo } = useContext(ProfileContext);
+
+    // profileInfo에서 필요한 값들을 추출
+    const { profileImage, id, post, follow, follower, greeting } = profileInfo;
+
     return (
       <Row className="profile">
         <Row className="profile-size">
         <div className="profile-left"> 
             <div className="profile-myImage">
-                <img src={props.info.profileImage} alt="프로필이미지"></img>
+                <img src={profileImage} alt="프로필이미지"></img>
             </div>
         </div>
         <div className="profile-myInfo">
             <Row>
-                <p style={{ fontSize: '28px', margin: '0px' }}>{props.info.id}</p>
+                <p style={{ fontSize: '28px', margin: '0px' }}>{id}</p>
                 <Button>프로필 편집</Button>
                 <EidtImg src="/images/Edit.png" alt="설정"></EidtImg>
             </Row>
             <Row className="profile-myInfo-state">
                 <Row>
                     <ProfileText>게시물</ProfileText>
-                    <ProfileText style={{ paddingRight: '20px' }}> {props.info.post}</ProfileText>
+                    <ProfileText style={{ paddingRight: '20px' }}> {post}</ProfileText>
 
                     <ProfileText>팔로워</ProfileText>
-                    <ProfileText style={{ paddingRight: '20px' }}> {props.info.follower}</ProfileText>
+                    <ProfileText style={{ paddingRight: '20px' }}> {follower}</ProfileText>
   
                     <ProfileText>팔로우</ProfileText>
-                    <ProfileText> {props.info.follow}</ProfileText>
+                    <ProfileText> {follow}</ProfileText>
                 </Row>
             </Row>
             <div>
-                {props.info.greeting}
+                {greeting}
             </div>
         </div>
         </Row>
