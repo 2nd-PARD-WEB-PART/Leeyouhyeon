@@ -1,4 +1,4 @@
-# 이유현
+# Istagram 웹 페이지 카피 코딩
 
 ## 5차_WEB_PART
 
