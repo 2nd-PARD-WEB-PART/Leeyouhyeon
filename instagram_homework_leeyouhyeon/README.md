@@ -14,6 +14,7 @@
     + 수정된 정보가 없을 때 제출 버튼이 비활성화됨
 ---
 + Home
+![home](https://github.com/2nd-PARD-WEB-PART/Leeyouhyeon/blob/main/instagram_homework_leeyouhyeon/mypage.png)
     + 게시물에 좋아요 아이콘을 눌렀을 때 좋아요 아이콘 색상 변화&좋아요 수 증가
     + 댓글 입력 후 게시 버튼 클릭시 댓글이 화면에 표시됨(ID, 댓글 내용, 댓글 좋아요 버튼, 댓글 좋아요 수)
     + 각각 댓글의 좋아요 아이콘 클릭시 좋아요 아이콘 색상 변화&좋아요 수 증가
