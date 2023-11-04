@@ -7,9 +7,12 @@
     + 사용자 프로필 정보(프로필 이미지, 게시물&팔로워&팔로우 수, 소개, 게시물)을 보여줌
     + Instagram 로고를 선택하면 Home 페이지로 넘어감
     + 프로필 이미지를 선택하면 EditProfile 페이지로 넘어감
+---
 + EditProfile
+![editProfile](https://github.com/2nd-PARD-WEB-PART/Leeyouhyeon/blob/main/instagram_homework_leeyouhyeon/edit.png)
     + 사용자 정보를 수정할 수 있는 페이지 : 프로필 이미지, 사용자 이름, 소개, 웹사이트, 이메일, 성별 수정가능
     + 수정된 정보가 없을 때 제출 버튼이 비활성화됨
+---
 + Home
     + 게시물에 좋아요 아이콘을 눌렀을 때 좋아요 아이콘 색상 변화&좋아요 수 증가
     + 댓글 입력 후 게시 버튼 클릭시 댓글이 화면에 표시됨(ID, 댓글 내용, 댓글 좋아요 버튼, 댓글 좋아요 수)
