@@ -3,7 +3,7 @@
 ## 페이지 설명
 
 + MyPage
-    + ![mypage](https://github.com/2nd-PARD-WEB-PART/Leeyouhyeon/blob/main/instagram_homework_leeyouhyeon/mypage.png)
+![mypage](https://github.com/2nd-PARD-WEB-PART/Leeyouhyeon/blob/main/instagram_homework_leeyouhyeon/mypage.png)
     + 사용자 프로필 정보(프로필 이미지, 게시물&팔로워&팔로우 수, 소개, 게시물)을 보여줌
     + Instagram 로고를 선택하면 Home 페이지로 넘어감
     + 프로필 이미지를 선택하면 EditProfile 페이지로 넘어감
