@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { useContext  } from "react";
 import { ProfileContext } from './ProfileContext';
 
+
 const Row =styled.div`
     display: flex;
     flex-direction: row;

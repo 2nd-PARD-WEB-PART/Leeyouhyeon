@@ -46,22 +46,6 @@ const BtnImgIcons =styled.img`
     }
 `;
 
-const BtnLike =styled.button`
-    display: flex;
-    width: 24px;
-    height: 26px;
-
-    @media (max-width: 750px){
-      width: 18px;
-      height: 20px;
-    }
-    @media (max-width: 449px){
-      width: 12px;
-      height: 14px;
-      padding-right: 0px;
-    }
-`;
-
 const OtherId =styled.p`
   font-size: 14px;
   font-style: normal;

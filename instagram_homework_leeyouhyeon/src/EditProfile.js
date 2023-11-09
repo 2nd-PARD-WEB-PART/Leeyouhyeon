@@ -2,10 +2,18 @@ import React , { useState, useRef, useContext  } from "react";
 import styled from "styled-components";
 import './css/EditProfile.css';
 import './css/Mypage.css';
-import { Link} from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 
 import { ProfileContext } from './ProfileContext';
+import axios from "axios";
 
+// 업데이트할 데이터의 id
+const userId ="이유현";
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: "Bearer YOUR_ACCESS_TOKEN",
+}
 
 function EditProfile() {
 
@@ -13,7 +21,9 @@ function EditProfile() {
     const { profileInfo, setProfileInfo } = useContext(ProfileContext);
 
     // profileInfo에서 필요한 값들을 추출
-    const { id, greeting, website, email, gender, profileImage } = profileInfo;
+    const { id, age, part, profileImage } = profileInfo;
+
+    const navigate = useNavigate();
 
     //사용자가 내용을 수정했을때 버튼 활성화 
     const [isModified, setIsModified] = useState(false);
@@ -31,19 +41,27 @@ function EditProfile() {
 
     // 각 입력 필드의 값 저장 상태 변수
     const [newUsername, setNewUsername] = useState(id);
-    const [newGreeting, setNewGreeting] = useState(greeting);
-    const [newWebsite, setNewWebsite] = useState(website);
-    const [newEmail, setNewEmail] = useState(email);
-    const [newGender, setNewGender] = useState(gender);
+    const [newAge, setNewAge] = useState(age);
+    const [newPart, setNewPart] = useState(part);
 
     // 파일 업로드 이벤트 핸들러
     const handleImageChange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-          const imageURL = URL.createObjectURL(file);
-          setImageURL(imageURL);
-          setIsModified(true);
-      }
+      const formData = new FormData();
+      formData.append("image", event.target.files[0]);
+      // POST 요청 보내기
+      axios
+      .post("http://3.35.236.83/image", formData)
+      .then((response) => {
+        // 서버에서의 응답을 처리합니다.
+        console.log("이미지가 성공적으로 업로드되었습니다:", response.data);
+        setImageURL(response.data); // 이미지 URL을 설정
+        setIsModified(true);
+      })
+      .catch((error) => {
+        // 오류를 처리합니다.
+        console.error("이미지 업로드 중 오류 발생:", error);
+      });
+
     };
 
     // 각 입력 필드의 변경 이벤트 핸들러
@@ -53,43 +71,40 @@ function EditProfile() {
       setIsModified(true);
     };
 
-    const handleGreetingChange = (event) => {
-      const newGreeting = event.target.value;
-      setNewGreeting(newGreeting);
+    const handleAgeChange = (event) => {
+      const newAge = event.target.value;
+      setNewAge(newAge);
       setIsModified(true);
     };
 
-    const handleWebsiteChange = (event) => {
-      const newWebsite = event.target.value;
-      setNewWebsite(newWebsite);
-      setIsModified(true);
-    };
-
-    const handleEmailChange = (event) => {
-      const newEmail = event.target.value;
-      setNewEmail(newEmail);
-      setIsModified(true);
-    };
-
-    const handleGenderChange = (event) => {
-      const newGender = event.target.value;
-      setNewGender(newGender);
+    const handlePartChange = (event) => {
+      const newPart = event.target.value;
+      setNewPart(newPart);
       setIsModified(true);
     };
 
     const handleSubmit = (event) => {
       event.preventDefault();
       if (isModified) {
-          setProfileInfo((prevProfileInfo) => ({
-              ...prevProfileInfo,
-              profileImage: imageURL,
-              id: newUsername,
-              greeting: newGreeting,
-              website: newWebsite,
-              email: newEmail,
-              gender: newGender
-          }));
-          setIsModified(false);
+        const Data = {
+          "age" : newAge,
+          "part" :newPart,
+          "imgURL" : imageURL
+        }
+        // PATCH 요청 보내기
+        axios
+        .patch(`http://3.35.236.83/pard/update/${userId}`, Data ,{headers})
+        .then((response) => {
+          console.log("일부 내용이 업로드되었습니다:", response.data);
+          //서버에서의 응답을 처리합니다.
+        })
+        .catch((error) => {
+          console.error("업데이트 중 오류 발생:", error);
+          // 오류를 처리합니다.
+        });
+
+        setIsModified(false);
+        navigate("/");
       }
     };
 
@@ -153,23 +168,14 @@ function EditProfile() {
                             <InputBox className="EditProfile-id" type="text"  onChange={handleUsernameChange}></InputBox>
                         </Row>
                         <Row>
-                            <InfoP style={{ marginLeft: '137px'}}>소개</InfoP>
-                            <InputBox className="EditProfile-greeting" type="text"  onChange={handleGreetingChange}
-                            style={{ height: '64px'}}></InputBox>
+                            <InfoP style={{ marginLeft: '142px'}}>나이</InfoP>
+                            <InputBox className="EditProfile-age" type="text" onChange={handleAgeChange}></InputBox>
                         </Row>
                         <Row>
-                            <InfoP style={{ marginLeft: '110px'}}>웹사이트</InfoP>
-                            <InputBox className="EditProfile-web" type="text" placeholder="링크 추가하기" onChange={handleWebsiteChange} ></InputBox>
+                            <InfoP style={{ marginLeft: '142px'}}>파트</InfoP>
+                            <InputBox className="EditProfile-part" type="text" onChange={handlePartChange}></InputBox>
                         </Row>
-                        <Row>
-                            <InfoP style={{ marginLeft: '125px'}}>이메일</InfoP>
-                            <InputBox className="EditProfile-email" type="email" onChange={handleEmailChange}></InputBox>
-                        </Row>
-                        <Row>
-                            <InfoP style={{ marginLeft: '142px'}}>성별</InfoP>
-                            <InputBox className="EditProfile-sex" type="text"  onChange={handleGenderChange}></InputBox>
-                        </Row>
-                        <button type="submit" className={submitButtonClass}>제출</button>
+                        <button type="submit" className={submitButtonClass} disabled={!isModified} >제출</button>
                     </form>
                 </div>
             </Row>
