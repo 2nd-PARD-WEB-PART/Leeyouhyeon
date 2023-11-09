@@ -32,9 +32,10 @@
     + 설치방법: npm install styled-components
 + react-responsive
     + npm install react-responsive
++ axios
+    +import axios from axios
 
-
-## 5차_WEB_PART 과제
+## 4차_WEB_PART 과제
 
 + Context API를 사용해 사용자 프로필 정보 및 홈화면의 댓글 및 좋아요 수 상태 관리
 + 반응현 웹 디자인 구현
@@ -48,3 +49,18 @@
 + 기존 전체 화면 페이지: width가 750px 이상일 때
 + Home REsponsive1: width가 450px 이상 750px 미만일 때
 + Home REsponsive2: width가 450px 미만일 때
+
+## 5차_WEB_PART 과제
++ axios를 활용하여 서버와 데이터를 주고 받는다.
++ GET 요청을 사용하여 서버에서 사용자 프로필 정보를 불러온다.
++ 사용자 프로필 정보를 수정하고 수정 내용을 서버에 PATCH 요청으로 전송한다.
+
+### 프로필 편집 페이지 수정
++ 프로필 이미지, 사용자 이름, 소개, 웹사이트, 이메일, 성별 -> 프로필 이미지, 사용자 이름, 나이, 파트
+
+### 사용자 프로필 정보 GET으로 불러오기
++ GET을 통해 서버에 불러온 데이터(프로필 이미지, 이름, 나이, 파트)를 화면에 반영(프로필 이미지, 이름)
+
+### 수정된 내용을 PATCH 요청으로 서버에 전송하기 
++ 프로필 이미지, 나이, 파트를 수정시 서버에 수정된 내용을 업데이트.
++ 새로고침시 변경된 프로필 이미지가 화면에 반영
