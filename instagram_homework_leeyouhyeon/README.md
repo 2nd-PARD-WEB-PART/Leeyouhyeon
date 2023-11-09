@@ -33,7 +33,7 @@
 + react-responsive
     + npm install react-responsive
 + axios
-    +import axios from axios
+    + import axios from axios
 
 ## 4차_WEB_PART 과제
 
